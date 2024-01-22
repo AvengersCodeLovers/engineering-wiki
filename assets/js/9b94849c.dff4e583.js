@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[623],{8431:e=>{e.exports=JSON.parse('{"title":"Ruby","slug":"/category/ruby","permalink":"/docs/category/ruby","navigation":{"previous":{"title":"Coding conventions","permalink":"/docs/php/coding-conventions"},"next":{"title":"Coding conventions","permalink":"/docs/ruby/coding-conventions"}}}')}}]);
