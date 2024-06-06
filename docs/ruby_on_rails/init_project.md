@@ -2,13 +2,13 @@
 sidebar_position: 1
 ---
 
-# Init Project
+# Init Project, Gem phổ biến
 
 ## Mục tiêu của bài viết
 - Tổng hợp tài liệu từ tutorial ruby on rails, kết hợp với list gem thường được sử dụng trong các dự án thực tế (có giải thích và link gem tương ứng). 
 - Bài viết là một checklist dành cho người init dự án ROR.
 
-## Tutorial
+## Tutorial Ruby on Rails
 - [Tutorial](https://www.railstutorial.org/book/toy_app)
 
 ## Các cài đặt cần thiết
@@ -244,7 +244,7 @@ end
 
 ```
 
-## Một số GEM thường sử dụng đi kèm config
+## Một số Gem đáng chú ý
 - Với việc cài Gemfile trên thông qua câu lệnh `bundle install` một số Gem yêu cầu phải có những file config đặc biệt:
 
 1. **config/puma.rb**
@@ -289,3 +289,23 @@ end
 - [redis-objects](https://github.com/nateware/redis-objects)
 6. **Counter Culture: Tự động cập nhật các counter caches**
 - [counter_culture](https://github.com/magnusvk/counter_culture)
+7. **Switch Point: Cho phép sử dụng nhiều kết nối cơ sở dữ liệu với ActiveRecord**
+- [switch_point](https://github.com/eagletmt/switch_point)
+- *Lưu ý*: Tuy nhiên gem không hoạt động tốt trong `transactions`, cần sử dụng `auto_writable`
+8. **Carrierwave: Upload và quản lý file dễ dàng**
+- [carrierwave](https://github.com/carrierwaveuploader/carrierwave)
+9. **FCM: Gửi thông báo qua Firebase Cloud Messaging**
+- [fcm](https://github.com/spacialdb/fcm)
+10. **Ransack: Công cụ tìm kiếm và lọc cho Rails**
+- [ransack](https://github.com/activerecord-hackery/ransack)
+11. **MiniMagick: Sử dụng ImageMagick trong Ruby một cách dễ dàng**
+- [mini_magick](https://github.com/minimagick/minimagick)
+12. **Parallel: Thực hiện các tác vụ song song để tăng tốc độ xử lý**
+- [parallel](https://github.com/grosser/parallel)
+13. **Với những dự án sử dụng sidekiq**
+- [Leak Memory Ruby on Rails và cài đặt jemalloc](https://viblo.asia/p/leak-memory-ruby-on-rails-va-cai-dat-jemalloc-Qbq5Q7YzZD8)
+
+## What's next?
+
+- DockerFile, docker-compose.yml hay dùng cho dự án ROR.
+- Deploy được dự án ROR qua cách làm phổ biến ở **Sun***, sử dụng capistrano + rails_skeleton
