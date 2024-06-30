@@ -4,7 +4,16 @@ set :application, "engineering-wiki"
 
 set :deploy_to, "/home/deploy/deploy/#{fetch(:application)}"
 set :repo_url, "git@github.com:AvengersCodeLovers/engineering-wiki.git"
-set :branch, :main
+
+set :deploy_ref, ENV["DEPLOY_REF"]
+if fetch(:deploy_ref)
+    set :branch, fetch(:deploy_ref)
+else
+    raise "Please set $DEPLOY_REF"
+end
+
+# Uncomment the line if deploying multiple servers
+# set :instances, get_intances_targets
 
 set :linked_files, %w(config/database.yml config/master.key config/credentials.yml.enc config/application.yml)
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads public/assets)

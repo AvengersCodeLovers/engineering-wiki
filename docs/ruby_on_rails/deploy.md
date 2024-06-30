@@ -122,9 +122,60 @@ Thêm các files:
 
 Copy các files trên vào **/var/www/[app_name]/shared/config/**
 
-Ở local, tại folder ứng dụng chạy: `bundle exec cap [stage] deploy`
+Copy **puma.service**, **sidekiq.service** vào **/etc/systemd/system/**
+
+Sửa file Sudoers để không cần xác nhận mật khẩu khi chạy các lệnh với puma, sidekiq:
+```
+sudo -i
+visudo
+# Thêm nội dung sau:
+deploy ALL=NOPASSWD: /usr/sbin/service puma start
+deploy ALL=NOPASSWD: /usr/sbin/service puma restart
+deploy ALL=NOPASSWD: /usr/sbin/service puma stop
+
+deploy ALL=NOPASSWD: /usr/sbin/service sidekiq start
+deploy ALL=NOPASSWD: /usr/sbin/service sidekiq restart
+deploy ALL=NOPASSWD: /usr/sbin/service sidekiq stop
+```
+
+Để có thể chạy script deploy ở bất kì đâu:
+- Copy **deploy_bin** vào **/home/deploy/**
+- Sửa `PATH` trong file **~/.bash_profile**
+```
+vim ~/.bash_profile
+# Sửa PATH thành:
+PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/deploy_bin
+# Lưu thay đổi và chạy lệnh:
+source ~/.bash_profile
+```
+
+Cuối cùng, chạy:
+- deploy tag: `deploy branch [branch_name] [stage]`
+- deploy branch: `deploy branch [branch_name] [stage]`
 
 ### 7. RollBack
 Mặc định Capistrano sẽ lưu lại 5 phiên bản deploy thành công gần nhất, có thể rollback về bất kỳ phiên bản nào trong đó:
 - Rollback về phiên bản ngay trước đó: `bundle exec cap [stage] deploy:rollback`
 - Rollback về phiên bản cũ hơn: `bundle exec cap [stage] deploy:rollback ROLLBACK_RELEASE=[timestamped_folder_in_releases_folder]`
+
+### 8. Deploy nhiều Server cùng lúc
+Thêm file **config/deploy/instances_utils.rb**, **config/deploy/settings.yml**
+
+Bỏ comment dòng `set :instances, get_intances_targets` trong **config/deploy.rb**
+
+Comment `server ...` trong **config/deploy/staging.rb** và **config/deploy/production.rb** và thêm đoạn sau:
+```
+instances = fetch(:instances)
+
+instances.each do |role_name, hosts|
+  hosts.each_with_index do |host, i|
+    roles = [role_name]
+    roles << "db" if i == 0
+    server host, user: "deploy", roles: roles
+  end
+end
+```
+
+Lệnh deploy thay đổi như sau:
+  - deploy tag: `deploy branch [branch_name] [stage] [instance_name_1],[instance_name_1]`
+  - deploy branch: `deploy branch [branch_name] [stage] [instance_name_1],[instance_name_1]`
