@@ -1,0 +1,7 @@
+instance_name_tags:
+  staging:
+    app: [ip_add]
+    batch: [ip_add]
+  production:
+    app: [ip_add]
+    batch: [ip_add]
