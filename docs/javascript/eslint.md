@@ -43,13 +43,13 @@ ESLint ưu tiên sự an toàn và tránh những thay đổi không mong muốn
 
 Mỗi quy tắc ESLint thường có cấu trúc sau:
 
-JavaScript
+```JavaScript
 {
     "rules": {
         "rule-name": [severity, options]
     }
 }
-
+```
 
 - rule-name: Tên của quy tắc (ví dụ: quotes, semi, no-unused-vars).
 - severity: Mức độ nghiêm trọng của quy tắc:
@@ -61,7 +61,7 @@ JavaScript
 
 Ví dụ:
 
-JavaScript
+```JavaScript
 {
     "rules": {
         "quotes": ["error", "double"], // Yêu cầu sử dụng dấu ngoặc kép đôi
@@ -69,3 +69,4 @@ JavaScript
         "no-console": "off"            // Tắt quy tắc cấm sử dụng console
     }
 }
+```
