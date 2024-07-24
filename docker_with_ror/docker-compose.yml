@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+      - redis
+      - mailhog
+    environment:
+      <<: *env
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: myapp_development
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:6.2
+    volumes:
+      - redis_data:/data
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    environment:
+      <<: *env
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"
+
+volumes:
+  mysql_data:
+  redis_data:
+
+x-environment: &env
+  TZ: 'Asia/Ho_Chi_Minh'
+  DATABASE_HOST: mysql
+  DATABASE_PORT: 3306
+  REDIS_URL: redis://redis:6379/0
+  MAILHOG_HOST: mailhog
