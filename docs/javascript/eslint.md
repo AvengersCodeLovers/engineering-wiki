@@ -43,7 +43,7 @@ ESLint ưu tiên sự an toàn và tránh những thay đổi không mong muốn
 
 Mỗi quy tắc ESLint thường có cấu trúc sau:
 
-```JavaScript
+```Javascript
 {
     "rules": {
         "rule-name": [severity, options]
