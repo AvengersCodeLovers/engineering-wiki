@@ -115,10 +115,10 @@ node_modules
 
 ### 3.4 Cấu hình database, mailhog, sideki
 
-Các file cấu hình như database.yml, mailhog, sidekiq.yml vẫn được cấu hình như bình thường, có thể tham khảo                                                                                                                                                                                                       
+Các file cấu hình như database.yml, mailhog, sidekiq.yml vẫn được cấu hình như bình thường, có thể tham khảo
 
 - Database.yml: [database.yml](/../static/docker_with_ror/database.yml)
-- Sidekiq.yml: [sidekiq.yml](/../static/docker_with_ror/sidekiq.yml)   
+- Sidekiq.yml: [sidekiq.yml](/../static/docker_with_ror/sidekiq.yml)
 - Mailhog:
 ```
 #config/environments/development.rb
@@ -128,7 +128,7 @@ config.action_mailer.smtp_settings = {
   address: ENV['MAILHOG_HOST'],
   port: 1025
 }
-```                                                                                                                                                                                                                                                                                                                                      
+```
 ## 4. Một số CLI rails hay được sử dụng với Docker
 
 ### 4.1. docker build, up, down
@@ -142,9 +142,9 @@ docker-compose down
 ### 4.2. docker start, restart, stop container
 
 ```
-docker-compose start {container_id}
-docker-compose restart {container_id}
-docker-compose stop {container_id}
+docker-compose start {service_name}
+docker-compose restart {service_name}
+docker-compose stop {service_name}
 ```
 
 ### 4.3. create, migrate database, bundle
