@@ -21,9 +21,10 @@ Tuy nhiên, cách làm này có nhược điểm là bắt buộc mọi người
 
 Golang có `gofmt`, Rust có `rustfmt` là các tool được phát triển bởi chính core team của ngôn ngữ, Javascript có `prettier`,...
 
-Đối với PHP, tool được recdommend là [`php-cs-fixer`](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer).
+Đối với PHP, tool được recommend là [`php-cs-fixer`](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer), ngoài chức năng fix lỗi conventions, nó còn có thể tích hợp vào CI để kiểm tra code đã follow theo chuẩn chưa.
 
-## What's next?
+## File config
 
-- Tóm tắt nội dung các chuẩn PSR
-- Tạo composer package để đóng gói config của phpcs, php-cs-fixer
+Các dự án trong organization có thể share file config dùng chung. Hiện tại, organization đã có package [`laravel-coding-standards`](https://github.com/AvengersCodeLovers/laravel-coding-standards). Việc sử dụng package này giúp dễ dàng chia sẻ file config và đảm bảo sự thống nhất trong việc format code cho các dự án Laravel trong organization.
+
+Chi tiết về cách sử dụng, tích hợp CI, vui lòng đọc [README](https://github.com/AvengersCodeLovers/laravel-coding-standards) của package.
