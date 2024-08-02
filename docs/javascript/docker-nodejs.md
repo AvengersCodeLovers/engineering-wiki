@@ -1,3 +1,8 @@
+---
+sidebar_position: 4
+---
+
+
 # Docker cơ bản cho dự án Node.js
 
 ## Giới thiệu
@@ -32,7 +37,8 @@ docker inspect my_node_app
 ```
 
 3. docker attach
-Chức năng: Gắn terminal vào một container đang chạy.
+
+- Chức năng: Gắn terminal vào một container đang chạy.
 
 ```bash
 docker attach <tên_container_hoặc_ID>
@@ -41,7 +47,8 @@ docker attach <tên_container_hoặc_ID>
 Lưu ý: Để thoát khỏi terminal, nhấn Ctrl+P rồi Ctrl+Q.
 
 4. docker run -it
-Chức năng: Tạo và khởi động một container tương tác, đồng thời gắn terminal vào container đó.
+
+- Chức năng: Tạo và khởi động một container tương tác, đồng thời gắn terminal vào container đó.
 
 ```bash
 docker run -it <tên_image> <câu_lệnh>
