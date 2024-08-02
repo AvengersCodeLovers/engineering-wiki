@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Prettier
@@ -44,3 +44,26 @@ Tóm lại:
 
 Lời khuyên:
 Sử dụng kết hợp Prettier cho việc định dạng mã và Linters (như ESLint) cho việc bắt lỗi là một cách tiếp cận hiệu quả để đảm bảo mã nguồn của bạn vừa đẹp, vừa sạch, vừa an toàn.
+
+## Sample config Prettier
+
+
+File .prettierrc.json
+
+```JavaScript
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "strict",
+  "endOfLine": "lf"
+}
+
+
+```

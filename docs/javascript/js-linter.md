@@ -2,7 +2,9 @@
 sidebar_position: 1
 ---
 
-# JS Linter: Người gác cổng chất lượng cho mã JavaScript của bạn
+# JS Linter
+
+JS Linter - Người gác cổng chất lượng cho mã JavaScript của bạn
 
 JavaScript, với tính linh hoạt và khả năng ứng dụng rộng rãi, đã trở thành ngôn ngữ lập trình không thể thiếu trong thế giới web hiện đại. Tuy nhiên, sự tự do này đôi khi cũng là con dao hai lưỡi, dẫn đến những đoạn mã khó đọc, tiềm ẩn lỗi và khó bảo trì. Đó là lúc JS Linter bước vào, đảm nhận vai trò người gác cổng, kiểm tra và đảm bảo chất lượng cho mã JavaScript của bạn.
 
