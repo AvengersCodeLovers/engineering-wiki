@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-performance_testing/basic_principles_in_performance_testing" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.1.0">
+<title data-rh="true">Các nguyên tắc cơ bản trong kiểm thử hiệu suất | Avengers Handbook</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://avengerscodelovers.github.io/engineering-wiki/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://avengerscodelovers.github.io/engineering-wiki/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://avengerscodelovers.github.io/engineering-wiki/docs/performance_testing/basic_principles_in_performance_testing/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Các nguyên tắc cơ bản trong kiểm thử hiệu suất | Avengers Handbook"><meta data-rh="true" name="description" content="Trong phần này, chúng ta đề cập đến một nhiệm vụ cơ bản mà ngay cả các công ty thực hiện performance testing cũng thường né tránh: xác định yêu cầu hiệu suất. Đó cũng là vấn đề mà team Performance Testing thường hay gặp phải trong các dự án cần Performance Testing"><meta data-rh="true" property="og:description" content="Trong phần này, chúng ta đề cập đến một nhiệm vụ cơ bản mà ngay cả các công ty thực hiện performance testing cũng thường né tránh: xác định yêu cầu hiệu suất. Đó cũng là vấn đề mà team Performance Testing thường hay gặp phải trong các dự án cần Performance Testing"><link data-rh="true" rel="icon" href="/engineering-wiki/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://avengerscodelovers.github.io/engineering-wiki/docs/performance_testing/basic_principles_in_performance_testing/"><link data-rh="true" rel="alternate" href="https://avengerscodelovers.github.io/engineering-wiki/docs/performance_testing/basic_principles_in_performance_testing/" hreflang="en"><link data-rh="true" rel="alternate" href="https://avengerscodelovers.github.io/engineering-wiki/docs/performance_testing/basic_principles_in_performance_testing/" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/engineering-wiki/blog/rss.xml" title="Avengers Handbook RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/engineering-wiki/blog/atom.xml" title="Avengers Handbook Atom Feed"><link rel="stylesheet" href="/engineering-wiki/assets/css/styles.0c6a6cd2.css">
+<script src="/engineering-wiki/assets/js/runtime~main.250ec37c.js" defer="defer"></script>
+<script src="/engineering-wiki/assets/js/main.4e178bad.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/engineering-wiki/"><div class="navbar__logo"><img src="/engineering-wiki/img/logo-avengers.png" alt="Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/engineering-wiki/img/logo-avengers.png" alt="Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Avengers Handbook</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/engineering-wiki/docs/overview/">Standards</a><a class="navbar__item navbar__link" href="/engineering-wiki/blog/">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/AvengersCodeLovers/engineering-wiki" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/engineering-wiki/docs/overview/">Tổng quan</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/engineering-wiki/docs/category/javascript/">Javascript</a><button aria-label="Expand sidebar category &#x27;Javascript&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/engineering-wiki/docs/category/php/">PHP</a><button aria-label="Expand sidebar category &#x27;PHP&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/engineering-wiki/docs/category/ruby-on-rails/">Ruby On Rails</a><button aria-label="Expand sidebar category &#x27;Ruby On Rails&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" aria-expanded="true" href="/engineering-wiki/docs/category/performance-testing/">Performance Testing</a><button aria-label="Collapse sidebar category &#x27;Performance Testing&#x27;" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/engineering-wiki/docs/performance_testing/why_performance_test/">Tại sao performance testing lại cần thiết</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/engineering-wiki/docs/performance_testing/basic_principles_in_performance_testing/">Các nguyên tắc cơ bản trong kiểm thử hiệu suất</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/engineering-wiki/docs/performance_testing/write_performance_script_with_k6/">Viết script test với công cụ K6 ở các Case Study thực tế</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/engineering-wiki/docs/category/docker/">Docker</a><button aria-label="Expand sidebar category &#x27;Docker&#x27;" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/engineering-wiki/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/engineering-wiki/docs/category/performance-testing/"><span itemprop="name">Performance Testing</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Các nguyên tắc cơ bản trong kiểm thử hiệu suất</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Các nguyên tắc cơ bản trong kiểm thử hiệu suất</h1>
+<p>Trong phần này, chúng ta đề cập đến một nhiệm vụ cơ bản mà ngay cả các công ty thực hiện performance testing cũng thường né tránh: <strong>xác định yêu cầu hiệu suất.</strong> Đó cũng là vấn đề mà team <a href="https://avengers.sun-asterisk.vn/team/performance-test" target="_blank" rel="noopener noreferrer">Performance Testing</a> thường hay gặp phải trong các dự án cần Performance Testing</p>
+<p>Ý tưởng về một phương pháp tiếp cận chính thức đối với <strong>application performance testing</strong> vẫn còn mới mẻ đối với nhiều người. Điều này thật khó hiểu, vì giống như bất kỳ dự án nào, nếu không lập kế hoạch đúng cách, sẽ dẫn đến những hiểu lầm và vấn đề. <strong>Performance testing</strong> không phải là ngoại lệ. Với suy nghĩ này, có một nguyên tắc quan trọng ở đây:</p>
+<p><a href="/engineering-wiki/docs/performance_testing/why_performance_test/"><strong>Performance awareness</strong></a> nên được tích hợp vào vòng đời ứng dụng càng sớm càng tốt. Nói cách khác, nếu bạn không bắt đầu lập kế hoạch với hiệu suất trong tâm trí, thì bạn tự đặt mình vào rủi ro đáng kể rằng ứng dụng của bạn sẽ không bao giờ đạt được hiệu suất như mong đợi.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="sự-khởi-đầu-cho-dự-án">Sự khởi đầu cho dự án<a href="#sự-khởi-đầu-cho-dự-án" class="hash-link" aria-label="Direct link to Sự khởi đầu cho dự án" title="Direct link to Sự khởi đầu cho dự án">​</a></h2>
+<p>Với bất kỳ dự án mới nào, chúng ta nên đặt ra những câu hỏi sau:</p>
+<ul>
+<li>Có bao nhiêu người dùng cuối mà ứng dụng cần hỗ trợ khi ra mắt? Sau 6 tháng, 12 tháng, 2 năm?</li>
+<li>Những người dùng này sẽ ở đâu và họ sẽ kết nối với ứng dụng như thế nào?</li>
+<li>Có bao nhiêu người dùng sẽ đồng thời tại thời điểm ra mắt? Sau 6 tháng, 12 tháng, 2 năm?</li>
+</ul>
+<p>Câu trả lời sau đó sẽ dẫn đến các câu hỏi khác, chẳng hạn như:</p>
+<ul>
+<li>Tôi cần bao nhiêu máy chủ và cấu hình như thế nào cho mỗi tầng của ứng dụng?</li>
+<li>Tôi cần cung cấp loại cơ sở hạ tầng mạng nào?</li>
+</ul>
+<p>Chúng ta có thể không thể trả lời ngay lập tức, nhưng điều quan trọng là chúng ta đã bắt đầu suy nghĩ sớm về hai yếu tố quan trọng: <strong>capacity</strong> và <strong>performance</strong>.</p>
+<p>Chúng ta sẽ cần giải quyết nhiều yếu tố trước khi có thể triển khai một chiến lược performance testing hiệu quả. Tất nhiên, performance testing không chỉ đơn giản là tạo ra tải và quan sát những gì xảy ra. Theo kinh nghiệm của tôi, những yêu cầu quan trọng nhất bao gồm:</p>
+<ul>
+<li><strong>Lựa chọn công cụ</strong> performance testing phù hợp</li>
+<li><strong>Thiết kế môi trường</strong> performance test thích hợp</li>
+<li>Đặt ra các <strong>mục tiêu hiệu suất</strong> thực tế và <strong>phù hợp</strong></li>
+<li>Đảm bảo ứng dụng của bạn <strong>đủ ổn định</strong> để thực hiện performance testing</li>
+<li><strong>Đóng băng</strong> mã nguồn (source code freeze)</li>
+<li>Xác định và <strong>lập kịch bản</strong> cho các <strong>giao dịch quan trọng</strong></li>
+<li>Cung cấp đủ <strong>dữ liệu thử nghiệm</strong></li>
+<li>Đảm bảo <strong>thiết kế</strong> performance test chính xác</li>
+<li>Phân bổ đủ <strong>thời gian</strong> để performance test hiệu quả</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lựa-chọn-công-cụ">Lựa chọn công cụ<a href="#lựa-chọn-công-cụ" class="hash-link" aria-label="Direct link to Lựa chọn công cụ" title="Direct link to Lựa chọn công cụ">​</a></h2>
+<p>Testing Tool Architecture</p>
+<p>Các công cụ automated performance test thường có các thành phần sau, phạm vi nội dung này mình sẽ đề cập tới 2 công cụ mình thấy nhiều người sử dụng nhất là <a href="https://jmeter.apache.org/" target="_blank" rel="noopener noreferrer">Jmeter</a> và <a href="https://k6.io/" target="_blank" rel="noopener noreferrer">K6</a>:</p>
+<ul>
+<li>
+<p><strong>Scripting module</strong>:</p>
+<ul>
+<li><strong>JMeter</strong>: JMeter cung cấp một giao diện đồ họa cho phép người dùng ghi lại hoạt động của người dùng cuối, như các yêu cầu HTTP, và hỗ trợ nhiều giao thức middleware khác nhau. Sau khi ghi lại, các script có thể được chỉnh sửa để liên kết với dữ liệu từ cơ sở dữ liệu hoặc các nguồn bên ngoài khác, và bạn cũng có thể điều chỉnh độ chi tiết của việc đo response-time.</li>
+<li><strong>k6</strong>: Với k6, bạn viết các script kiểm tra hiệu suất bằng ngôn ngữ JavaScript. k6 không có giao diện đồ họa để ghi lại hành động, nhưng nó cho phép bạn viết các script rất linh hoạt và mạnh mẽ, hỗ trợ nhiều giao thức và API.</li>
+</ul>
+</li>
+<li>
+<p><strong>Test management module</strong>:</p>
+<ul>
+<li><strong>JMeter</strong>: Cho phép tạo và quản lý các phiên kiểm tra tải hoặc kịch bản phức tạp với nhiều người dùng đồng thời. Bạn có thể cấu hình và quản lý các phiên kiểm tra từ giao diện đồ họa, và dễ dàng điều chỉnh cấu hình để chạy các thử nghiệm với nhiều loại tải khác nhau.</li>
+<li><strong>k6</strong>: k6 hỗ trợ việc tạo và quản lý các phiên kiểm tra tải thông qua các file cấu hình và command-line. Bạn có thể sử dụng các script để mô phỏng các tình huống sử dụng khác nhau và chạy chúng đồng thời.</li>
+</ul>
+</li>
+<li>
+<p><strong>Load injector(s)</strong>:</p>
+<ul>
+<li><strong>JMeter</strong>: Sử dụng nhiều workstation hoặc server để tạo tải, đặc biệt là khi thực hiện các bài kiểm tra quy mô lớn. JMeter cho phép phân tán các phiên kiểm tra qua nhiều máy chủ để tạo ra tải lớn hơn.</li>
+<li><strong>k6</strong>: k6 cũng có thể sử dụng nhiều máy chủ để tạo tải, và hỗ trợ việc phân tán kiểm tra qua nhiều máy nhằm đảm bảo tải đủ lớn cho các bài kiểm tra quy mô lớn.</li>
+</ul>
+</li>
+<li>
+<p><strong>Analysis module</strong>:</p>
+<ul>
+<li><strong>JMeter</strong>: Cung cấp khả năng phân tích dữ liệu kiểm tra qua các báo cáo tự động, biểu đồ và bảng. Bạn có thể dễ dàng thấy các kết quả, biểu đồ phản hồi, và thậm chí tạo ra các báo cáo chi tiết về hiệu suất.</li>
+<li><strong>k6</strong>: k6 cung cấp các báo cáo kiểm tra trực tiếp trên terminal và cũng có thể xuất dữ liệu sang các hệ thống giám sát khác như Grafana. Tính năng &quot;premium&quot; của k6 có thể được tùy chỉnh để thực hiện phân tích tự động và nêu bật các khu vực cần chú ý.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="thiết-kế-môi-trường-kiểm-thử">Thiết kế môi trường kiểm thử<a href="#thiết-kế-môi-trường-kiểm-thử" class="hash-link" aria-label="Direct link to Thiết kế môi trường kiểm thử" title="Direct link to Thiết kế môi trường kiểm thử">​</a></h2>
+<p>Khi thiết kế <strong>performance test environment</strong>, lý tưởng nhất là nó sẽ là một bản sao chính xác của <strong>deployment environment</strong>, nhưng điều này hiếm khi xảy ra vì nhiều lý do.</p>
+<ul>
+<li>
+<p><strong>Number and specification of servers</strong>: Do chi phí và độ phức tạp, thường không khả thi đ  ể sao chép chính xác nội dung và kiến trúc của máy chủ trong môi trường triển khai.</p>
+</li>
+<li>
+<p><strong>Bandwidth and connectivity of network infrastructure</strong>: Vị trí có thể là một vấn đề, cần đảm bảo vị trí máy chủ giữa môi trường test performance và production.</p>
+</li>
+<li>
+<p><strong>Number of application tiers</strong>: Số lượng application tiers thường có tác động lớn hơn đến tính hợp lệ của performance testing so với chỉ số lượng máy chủ. Vì vậy, đảm bảo application tiers performance environment càng giống với production càng tốt.</p>
+</li>
+<li>
+<p><strong>Sizing of application databases</strong>: Kích thước của cơ sở dữ liệu trong test environment nên gần như tương đương với cơ sở dữ liệu trên production. Nếu không, sự khác biệt sẽ ảnh hưởng đáng kể đến tính hợp lệ của kết quả performance test.</p>
+</li>
+</ul>
+<p><strong>Tóm tắt, có ba mức độ ưu tiên khi thiết kế một test environment:</strong></p>
+<ul>
+<li>
+<p><strong>An exact or very close copy of the live environment</strong>: Đây là lý tưởng nhất nhưng thường khó đạt được vì các lý do thực tế và thương mại.</p>
+</li>
+<li>
+<p>A subset of the live environment with fewer servers but specification and tier-deployment matches: Đây là lựa chọn khả thi nhất, miễn là cấu hình máy chủ ở mỗi tầng khớp với live environment. Điều này cho phép đánh giá chính xác giới hạn capacity của từng máy chủ.</p>
+</li>
+<li>
+<p>A subset of the live environment with fewer servers of lower specification: Đây là tình huống phổ biến nhất; test environment đủ để triển khai ứng dụng nhưng số lượng, triển khai tầng, và cấu hình máy chủ khác biệt đáng kể so với live environment.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="performance-environment-checklist">Performance Environment Checklist<a href="#performance-environment-checklist" class="hash-link" aria-label="Direct link to Performance Environment Checklist" title="Direct link to Performance Environment Checklist">​</a></h2>
+<p>Dưới đây là checklist giúp dự án xác định mức độ tương đồng giữa test environment và production environment. Từ mô hình triển khai ứng dụng, thu thập các thông tin sau đây cho mỗi tầng máy chủ. Điều này bao gồm các thiết bị black-box như load balancers và content servers nếu có.</p>
+<ul>
+<li><strong>Number of servers</strong>: Số lượng máy chủ vật lý hoặc ảo cho tầng này.</li>
+<li><strong>Load balancing strategy</strong>: Loại cơ chế cân bằng tải đang sử dụng (nếu có liên quan).</li>
+<li><strong>Hardware inventory</strong>: Số lượng và loại CPU, dung lượng RAM, số lượng và loại NIC (Network Interface Cards).</li>
+<li><strong>Software inventory</strong>: Danh sách phần mềm tiêu chuẩn cài đặt, ngoại trừ các thành phần của ứng dụng sẽ được kiểm tra hiệu suất.</li>
+<li><strong>Application component inventory</strong>: Mô tả các thành phần của ứng dụng sẽ được triển khai trên tầng máy chủ này.</li>
+<li><strong>External Service</strong>: Bất kỳ service nào đến các hệ thống nội bộ khác hoặc bên thứ ba. Những service này thường khó sử dụng trong test environment và thường bị bỏ qua hoặc thay thế bằng một mô phỏng nào đó. Tối thiểu, dự án nên cung cấp chức năng mô phỏng hành vi mong đợi của function sử dụng 3rd.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="key-performance-targets">Key Performance Targets<a href="#key-performance-targets" class="hash-link" aria-label="Direct link to Key Performance Targets" title="Direct link to Key Performance Targets">​</a></h2>
+<p>Khi nói về các mục tiêu hiệu suất, có ba mục tiêu chính áp dụng cho bất kỳ performance test nào, dựa trên các service-oriented performance indicators:</p>
+<ol>
+<li>
+<p><strong>Availability</strong> or <strong>Uptime</strong>:</p>
+<ul>
+<li>Ứng dụng phải luôn sẵn sàng cho người dùng cuối, ngoại trừ các khoảng thời gian bảo trì đã được lên kế hoạch. Ứng dụng không được phép gặp lỗi trong khi đạt đến mức <strong>concurrency</strong> hoặc <strong>throughput</strong> mục tiêu.</li>
+<li>Kiểm tra tính sẵn sàng thực sự là một vấn đề phức tạp. Việc ping thành công máy chủ không nhất thiết có nghĩa là ứng dụng đang hoạt động. Tương tự, chỉ vì có thể kết nối với máy chủ web không có nghĩa là trang chủ của ứng dụng có sẵn. Ứng dụng có thể hoạt động tốt với tải nhẹ nhưng có thể gặp sự cố hoặc trả về lỗi khi tải tăng lên, điều này cho thấy ứng dụng thiếu khả năng chịu tải.</li>
+</ul>
+</li>
+<li>
+<p><strong>Concurrency</strong>, <strong>Scalability</strong>, and <strong>Throughput</strong>:</p>
+<ul>
+<li><strong>Concurrency</strong> là mục tiêu hiệu suất thường bị hiểu sai. Nhiều khi, khách hàng đưa ra số lượng người dùng đồng thời mà ứng dụng phải hỗ trợ mà không xem xét đầy đủ về yêu cầu thực tế.</li>
+<li>Theo Scott Barber trong bài báo <a href="http://www.perftestplus.com/resources/requirements_with_compuware.pdf" target="_blank" rel="noopener noreferrer">“Get performance requirements right: Think like a user,”</a> tính toán <strong>concurrency</strong> dựa trên số liệu theo giờ là cách thực tế hơn. <strong>Concurrency</strong> từ góc độ của công cụ <strong>performance testing</strong> là số lượng người dùng ảo hoạt động mà phần mềm tạo ra, điều này không nhất thiết tương đương với số lượng người dùng thực sự đang truy cập ứng dụng.</li>
+<li><strong>Throughput</strong> đôi khi quan trọng hơn <strong>concurrency</strong>, đặc biệt đối với các ứng dụng &quot;stateless,&quot; nơi số lượng người dùng đồng thời ít quan trọng hơn số lượng truy cập hoặc &quot;hits&quot; trong một khoảng thời gian nhất định.</li>
+</ul>
+</li>
+<li>
+<p><strong>Network Utilization</strong> and <strong>Server Utilization</strong>:</p>
+<ul>
+<li>Đây là những chỉ số đo lường mức độ sử dụng của tài nguyên mạng và máy chủ trong quá trình performance testing. Chúng là các thước đo quan trọng không chỉ về khả năng chịu tải mà còn về hiệu suất tổng thể của ứng dụng. Việc hiểu rõ network utilization và server utilization giúp bạn xác định được các điểm nghẽn và tối ưu hóa tài nguyên hệ thống.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Tip</strong>: Một nguyên tắc hữu ích là <strong>thêm 10%</strong> vào mục tiêu <strong>concurrency</strong> hoặc <strong>throughput</strong> mà bạn dự đoán cho thời điểm triển khai, để đảm bảo rằng bạn đang kiểm tra vượt quá các yêu cầu dự đoán.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="đảm-bảo-ứng-dụng-is-stable-enough-for-performance-testing">Đảm bảo ứng dụng is stable enough for Performance Testing<a href="#đảm-bảo-ứng-dụng-is-stable-enough-for-performance-testing" class="hash-link" aria-label="Direct link to Đảm bảo ứng dụng is stable enough for Performance Testing" title="Direct link to Đảm bảo ứng dụng is stable enough for Performance Testing">​</a></h2>
+<p>Sau khi đã thiết lập <strong>test environment</strong> và đặt ra các <strong>mục tiêu hiệu suất</strong>, chúng ta cần đảm bảo rằng ứng dụng của mình đủ ổn định để thực hiện performance testing. Điều này có vẻ hiển nhiên, nhưng thường performance testing biến thành một bài tập sửa lỗi đầy khó khăn, làm giảm nhanh chóng thời gian dành cho dự án.</p>
+<p><strong>Stability</strong> là sự tự tin rằng ứng dụng hoạt động đúng như mong đợi. Nếu bạn muốn tạo một đơn hàng trong ứng dụng của mình, thì quá trình này phải <strong>thành công mỗi lần</strong>, không phải chỉ <strong>8 trong 10 lần</strong>. Nếu có các vấn đề lớn về chức năng của ứng dụng, thì không nên tiếp tục performance testing vì những vấn đề này sẽ che lấp những vấn đề có thể xuất hiện do tải và áp lực.</p>
+<p><strong>Code Quality</strong> là yếu tố quan trọng hàng đầu cho <strong>good performance</strong>. Chúng ta cần có một chiến lược kiểm thử đơn vị (Unit Testing) và chức năng (Functional Testing) hiệu quả.</p>
+<p>Đảm bảo rằng ứng dụng của dự án ổn định trước khi thực hiện performance testing là bước quan trọng để tránh lãng phí thời gian và đảm bảo rằng chúng ta đang đo lường hiệu suất thực tế của hệ thống, không phải là các vấn đề do lỗi chức năng cơ bản.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="obtaining-a-code-freeze">Obtaining a Code Freeze<a href="#obtaining-a-code-freeze" class="hash-link" aria-label="Direct link to Obtaining a Code Freeze" title="Direct link to Obtaining a Code Freeze">​</a></h2>
+<p>Để performance testing hiệu quả, cần thực hiện trên một phiên bản mã ổn định. Nếu phát hiện lỗi cần sửa mã, hãy đảm bảo rằng mã không thay đổi giữa các chu kỳ thử nghiệm trừ khi cần thiết và được thông báo kịp thời cho đội ngũ kiểm thử. Các kịch bản kiểm thử phụ thuộc vào phiên bản mã, nên bất kỳ thay đổi không mong đợi nào có thể làm vô hiệu hóa hoặc làm sai lệch kết quả kiểm thử, gây ảnh hưởng lớn đến dự án. Code freeze giúp giữ môi trường thử nghiệm ổn định và đảm bảo kết quả chính xác.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="xác-định-và-viết-kịch-bản-kiểm-thử">Xác định và viết kịch bản kiểm thử<a href="#xác-định-và-viết-kịch-bản-kiểm-thử" class="hash-link" aria-label="Direct link to Xác định và viết kịch bản kiểm thử" title="Direct link to Xác định và viết kịch bản kiểm thử">​</a></h2>
+<p>Cốt lõi của <strong>performance testing</strong> là các <strong>script test</strong>. Ví dụ đơn giản là đăng nhập, tìm kiếm, và đăng xuất khỏi ứng dụng. Chúng ta cần xác định các hoạt động quan trọng mà người dùng thực hiện hàng ngày. Đây sẽ là cơ sở cho tất cả các bài kiểm tra hiệu suất, vì vậy cần xác định chúng một cách chính xác.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="transaction-script-checklist">Transaction (Script) Checklist:<a href="#transaction-script-checklist" class="hash-link" aria-label="Direct link to Transaction (Script) Checklist:" title="Direct link to Transaction (Script) Checklist:">​</a></h3>
+<ul>
+<li>Định nghĩa và tài liệu hóa từng bước thực hiện: Mỗi bước phải được mô tả rõ ràng, bao gồm đầu vào và đầu ra, để tạo kịch bản chính xác và xác định phần nào của giao dịch sẽ được đo lường.</li>
+<li>Xác định yêu cầu đầu vào và phản hồi mong đợi: Xác định thông tin cần nhập và kết quả mong đợi từ mỗi bước, ví dụ như đăng nhập, nhập mật khẩu.</li>
+<li>Xác định loại người dùng: Loại người dùng như giám sát viên, khách hàng, hoặc nhân viên sẽ xác định giao dịch là cao hay thấp về khối lượng.</li>
+<li>Xác định giao dịch là active hay passive: Giao dịch chủ động là các hoạt động người dùng thấy, còn giao dịch thụ động là các hoạt động nền để tạo tải thực tế, ví dụ:<!-- -->
+<ul>
+<li>Transaction chủ động: Ngươi dùng đăng nhập, tìm kiếm thông tin khách hàng, cập nhật hồ sơ, rồi đăng xuất. Đây là hoạt động mà người dùng thực hiện nhiều bước và tương tác liên tục với hệ thống.</li>
+<li>Transaction thụ động: Một người dùng đăng nhập vào hệ thống để kiểm tra tin nhắn nhưng không làm gì khác trong 10 phút, sau đó đăng xuất. Trong thời gian đó, người dùng không thực hiện bất kỳ thao tác nào khác ngoài việc duy trì kết nối với hệ thống</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="test-data-chất-lượng">Test Data Chất Lượng<a href="#test-data-chất-lượng" class="hash-link" aria-label="Direct link to Test Data Chất Lượng" title="Direct link to Test Data Chất Lượng">​</a></h2>
+<p>Khi đã có các <strong>mục tiêu hiệu suất</strong> và <strong>giao dịch cần kiểm tra</strong>, bước tiếp theo là đảm bảo cung cấp đủ <strong>dữ liệu kiểm thử chất lượng</strong>. Chất lượng và số lượng dữ liệu kiểm thử đóng vai trò quyết định đối với thành công của performance testing. Dưới đây là hai loại dữ liệu quan trọng:</p>
+<ol>
+<li>
+<p><strong>Input Data</strong>:
+Đây là dữ liệu nhập vào cho các giao dịch. Ví dụ, thông tin đăng nhập người dùng (ID và mật khẩu) cần được cung cấp đủ để tránh việc nhiều người dùng cùng sử dụng một thông tin đăng nhập, gây ra lỗi và kết quả không chính xác. Ngoài ra, bạn cũng cần chuẩn bị dữ liệu tìm kiếm đa dạng, như tên khách hàng, số hóa đ ơn, hoặc mã sản phẩm, và có thể bao gồm cả tìm kiếm wildcard để kiểm tra khả năng xử lý của hệ thống.</p>
+</li>
+<li>
+<p><strong>Target Data</strong>:
+Cơ sở dữ liệu đích cần được điền với lượng dữ liệu thực tế và phù hợp. Nếu cơ sở dữ liệu kiểm thử chỉ có 50 MB trong khi cơ sở dữ liệu thực tế là 50 GB, kết quả kiểm thử có thể không đáng tin cậy. Bạn nên đảm bảo kích thước cơ sở dữ liệu gần đúng với thực tế và thực hiện data rollback sau mỗi lần kiểm thử để đảm bảo tính nhất quán giữa các lần thử nghiệm.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="performance-test-type-design">Performance Test Type Design<a href="#performance-test-type-design" class="hash-link" aria-label="Direct link to Performance Test Type Design" title="Direct link to Performance Test Type Design">​</a></h2>
+<p>Sau khi xác định các <strong>kịch bản chính</strong> và yêu cầu <strong>dữ liệu</strong> của chúng, bước tiếp theo là tạo ra các loại kiểm thử hiệu suất khác nhau. Dưới đây là các loại kiểm thử phổ biến:</p>
+<ol>
+<li>
+<p><strong>Baseline test</strong>:
+Xác định điểm so sánh cho các lần kiểm thử sau, thường để đo thời gian phản hồi giao dịch. Kiểm thử này thường được thực hiện với một giao dịch duy nhất, một người dùng ảo, và không có hoạt động nào khác trên hệ thống. Kết quả sẽ được dùng để so sánh mức độ suy giảm hiệu suất khi số lượng người dùng hoặc tải tăng lên.</p>
+</li>
+<li>
+<p><strong>Load test</strong>:
+Kiểm thử cổ điển nhằm tải ứng dụng lên mức concurrency mục tiêu để xem liệu ứng dụng có đạt được các mục tiêu hiệu suất như availability, throughput, và response time không. Kiểm thử này mô phỏng vi  ệc sử dụng ứng dụng thực tế, bao gồm các tương tác và phản hồi của người dùng.</p>
+</li>
+<li>
+<p><strong>Stress test</strong>:
+Mục đích của stress test là đẩy ứng dụng hoặc hạ tầng hỗ trợ đến mức <strong>giới hạn</strong>, để xác định điểm mà hệ thống bắt đầu gặp lỗi. Kiểm thử này tiếp tục cho đến khi hệ thống <strong>không thể đăng nhập thêm người dùng</strong>, thời gian phản hồi vượt quá <strong>giới hạn chấp nhận</strong> được, hoặc ứng dụng trở nên <strong>không khả dụng</strong>. Kết quả của stress test giúp xác định <strong>giới hạn capacity của hệ thống</strong>.</p>
+</li>
+<li>
+<p><strong>Soak or stability test</strong>:
+Dùng để xác định các vấn đề xuất hiện sau một khoảng <strong>thời gian dài</strong>, như rò rỉ bộ nhớ hoặc giới hạn không lường trước trong số lần giao dịch có thể thực hiện. Soak test yêu cầu giám sát máy chủ liên tục để phát hiện các vấn đề này, thường biểu hiện qua việc thời gian phản hồi chậm dần hoặc sự mất khả dụng đột ngột của ứng dụng.</p>
+</li>
+<li>
+<p><strong>Smoke test</strong>:
+Tập trung vào những gì đã thay đổi. Smoke test performance có thể chỉ bao gồm các giao dịch bị ảnh hưởng bởi sự thay đổi mã.</p>
+</li>
+<li>
+<p><strong>Isolation test</strong>:
+Dùng để tập trung vào một vấn đề đã được xác định, thường bằng cách lặp lại các giao dịch cụ thể gây ra vấn đề hiệu suất.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>TIP</strong>: Bạn nên luôn thực hiện baseline, load, và stress test. Soak test và smoke test phụ thuộc vào ứng dụng và thời gian có sẵn, trong khi isolation test được thực hiện dựa trên các vấn đề đã được phát hiện.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="phân-bổ-effort-cho-performance-test-hiệu-quả">Phân bổ effort cho Performance Test hiệu quả<a href="#phân-bổ-effort-cho-performance-test-hiệu-quả" class="hash-link" aria-label="Direct link to Phân bổ effort cho Performance Test hiệu quả" title="Direct link to Phân bổ effort cho Performance Test hiệu quả">​</a></h2>
+<p>Để thực hiện performance testing hiệu quả, việc phân bổ đủ thời gian là rất quan trọng. Dưới đây là các yếu tố cần cân nhắc:</p>
+<ol>
+<li>
+<p><strong>Lead time to prepare test environment</strong>:
+Nếu dự án đã có môi trường kiểm thử sẵn sàng, thời gian chuẩn bị sẽ ít. Nếu không, dự án sẽ cần xây dựng từ đầu, bao gồm việc cài đặt và cấu hình phần cứng, ứng dụng.</p>
+</li>
+<li>
+<p><strong>Lead time to prepare the injection environment</strong>:
+Cần thời gian để chuẩn bị các tài nguyên cho việc tạo tải, server để quản lý và thực hiện load injection (May mắn là ở Sun Asterisk đã có tool <a href="https://atlas.sun-asterisk.vn" target="_blank" rel="noopener noreferrer">Atlas</a>).</p>
+</li>
+<li>
+<p><strong>Time to identify and script business transactions</strong>:
+Xác định và kịch bản hóa các trường hợp kinh doanh là cốt lõi của kiểm thử hiệu suất. Quá trình này có thể kéo dài từ vài ngày đến vài tuần, với việc viết kịch bản mất khoảng nửa ngày cho mỗi giao dịch.</p>
+</li>
+<li>
+<p><strong>Time to identify and create enough test data</strong>:
+Dữ liệu kiểm thử là chìa khóa, nên cần đủ thời gian để chuẩn bị, có thể mất nhiều ngày hoặc tuần. Cũng cần tính thời gian để đặt lại hoặc tạo lại dữ liệu kiểm thử giữa các lần thử nghiệm.</p>
+</li>
+<li>
+<p><strong>Time to instrument the test environment</strong>:
+Thời gian để cài đặt giám sát m ôi trường kiểm thử, theo dõi hành vi của các máy chủ và mạng trong quá trình performance test.</p>
+</li>
+<li>
+<p><strong>Time to prepare and execute performance test runs</strong>:
+Đây thường là phần ngắn nhất trong quá trình kiểm thử hiệu suất, bao gồm việc tạo và thực hiện các bài kiểm thử thực tế.</p>
+</li>
+<li>
+<p><strong>Time to deal with any problems identified</strong>:
+Dành thời gian để xử lý các vấn đề phát sinh, có thể liên quan đến thay đổi mã và yêu cầu sự tham gia của các nhà phát triển ứng dụng.</p>
+</li>
+</ol>
+<blockquote>
+<p>Việc lập kế hoạch thời gian cẩn thận cho từng yếu tố này sẽ giúp đảm bảo quá trình performance testing diễn ra suôn sẻ và đạt được kết quả mong muốn.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary">​</a></h2>
+<ul>
+<li>Ở trên là toàn bộ những điều chia sẻ làm kim chỉ nam cho 1 dự án chuẩn bị, đã và đang bước vào khâu Performance test, về các nguyên tắc làm sao cho đạt được một kết quả thuận lợi và khoa học.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-next">What&#x27;s next?<a href="#whats-next" class="hash-link" aria-label="Direct link to What&#x27;s next?" title="Direct link to What&#x27;s next?">​</a></h2>
+<ul>
+<li>Viết script test với công cụ K6 ở các Case Study thực tế</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/AvengersCodeLovers/engineering-wiki/tree/main/docs/performance_testing/basic_principles_in_performance_testing.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/engineering-wiki/docs/performance_testing/why_performance_test/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Tại sao performance testing lại cần thiết</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/engineering-wiki/docs/performance_testing/write_performance_script_with_k6/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Viết script test với công cụ K6 ở các Case Study thực tế</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#sự-khởi-đầu-cho-dự-án" class="table-of-contents__link toc-highlight">Sự khởi đầu cho dự án</a></li><li><a href="#lựa-chọn-công-cụ" class="table-of-contents__link toc-highlight">Lựa chọn công cụ</a></li><li><a href="#thiết-kế-môi-trường-kiểm-thử" class="table-of-contents__link toc-highlight">Thiết kế môi trường kiểm thử</a></li><li><a href="#performance-environment-checklist" class="table-of-contents__link toc-highlight">Performance Environment Checklist</a></li><li><a href="#key-performance-targets" class="table-of-contents__link toc-highlight">Key Performance Targets</a></li><li><a href="#đảm-bảo-ứng-dụng-is-stable-enough-for-performance-testing" class="table-of-contents__link toc-highlight">Đảm bảo ứng dụng is stable enough for Performance Testing</a></li><li><a href="#obtaining-a-code-freeze" class="table-of-contents__link toc-highlight">Obtaining a Code Freeze</a></li><li><a href="#xác-định-và-viết-kịch-bản-kiểm-thử" class="table-of-contents__link toc-highlight">Xác định và viết kịch bản kiểm thử</a><ul><li><a href="#transaction-script-checklist" class="table-of-contents__link toc-highlight">Transaction (Script) Checklist:</a></li></ul></li><li><a href="#test-data-chất-lượng" class="table-of-contents__link toc-highlight">Test Data Chất Lượng</a></li><li><a href="#performance-test-type-design" class="table-of-contents__link toc-highlight">Performance Test Type Design</a></li><li><a href="#phân-bổ-effort-cho-performance-test-hiệu-quả" class="table-of-contents__link toc-highlight">Phân bổ effort cho Performance Test hiệu quả</a></li><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#whats-next" class="table-of-contents__link toc-highlight">What&#39;s next?</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Learn</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/engineering-wiki/docs/overview/">Standards</a></li><li class="footer__item"><a href="https://tutorial.docusaurus.io/docs/category/tutorial---basics" target="_blank" rel="noopener noreferrer" class="footer__link-item">How to write docs?</a></li></ul></div><div class="col footer__col"><div class="footer__title">Services</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://avengers.sun-asterisk.vn" target="_blank" rel="noopener noreferrer" class="footer__link-item">aPortal<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://sal.vn" target="_blank" rel="noopener noreferrer" class="footer__link-item">SAL<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/engineering-wiki/blog/">Blog</a></li><li class="footer__item"><a href="https://github.com/AvengersCodeLovers/engineering-wiki" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 Avengers Code Lovers. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
